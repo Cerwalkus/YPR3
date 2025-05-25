@@ -1,0 +1,36 @@
+name: Artifact Example Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create artifact content
+        run: |
+          mkdir output
+          echo "This is a test file." > output/example.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: example-artifact
+          path: output/
+
+  use-artifact:
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: example-artifact
+
+      - name: Display artifact content
+        run: cat example.txt

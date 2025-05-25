@@ -1,4 +1,4 @@
-name: Artifact Example Workflow
+name: Real Artifact Workflow
 
 on:
   push:
@@ -6,31 +6,31 @@ on:
       - main
 
 jobs:
-  build:
+  generate-file:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create artifact content
+      - name: Create real data file
         run: |
-          mkdir output
-          echo "This is a test file." > output/example.txt
+          mkdir artifacts
+          echo "🔥 Привет! Это реальный файл с данными." > artifacts/data.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: example-artifact
-          path: output/
+          name: real-data
+          path: artifacts/
 
-  use-artifact:
+  use-file:
     runs-on: ubuntu-22.04
-    needs: build
+    needs: generate-file
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v2.1.1
         with:
-          name: example-artifact
+          name: real-data
 
-      - name: Display artifact content
-        run: cat example.txt
+      - name: Print content of data.txt
+        run: cat artifacts/data.txt

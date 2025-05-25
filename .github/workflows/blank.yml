@@ -18,7 +18,7 @@ jobs:
           echo "🔥 Привет! Это реальный файл с данными." > artifacts/data.txt
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
           name: real-data
           path: artifacts/
@@ -28,7 +28,7 @@ jobs:
     needs: generate-file
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3
         with:
           name: real-data
 

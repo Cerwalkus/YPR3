@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create real data file
         run: |
@@ -18,7 +18,7 @@ jobs:
           echo "🔥 Привет! Это реальный файл с данными." > artifacts/data.txt
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           name: real-data
           path: artifacts/

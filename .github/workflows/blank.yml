@@ -33,4 +33,4 @@ jobs:
           name: real-data
 
       - name: Print content of data.txt
-        run: cat artifacts/data.txt
+        run: cat real-data/data.txt
